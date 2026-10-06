@@ -1,0 +1,16 @@
+<launch>
+  <!-- Load Robot Description URDF -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find autonomous_rrp_pick_place_pkg)/urdf/rrp_arm.urdf.xacro'" />
+
+  <!-- Robot State Publisher -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <!-- RViz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find autonomous_rrp_pick_place_pkg)/rviz/urdf.rviz" required="true" />
+
+  <!-- IK Solver Node -->
+  <node name="rrp_ik_solver" pkg="autonomous_rrp_pick_place_pkg" type="rrp_ik_solver.py" output="screen" />
+
+  <!-- Target Sequence Publisher Node -->
+  <node name="send_ik_targets" pkg="autonomous_rrp_pick_place_pkg" type="send_ik_targets.py" output="screen" />
+</launch>
