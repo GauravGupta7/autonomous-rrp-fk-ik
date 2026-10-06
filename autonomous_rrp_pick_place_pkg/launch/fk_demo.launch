@@ -1,0 +1,16 @@
+<launch>
+  <!-- Load URDF model into ROS Parameter Server -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find autonomous_rrp_pick_place_pkg)/urdf/rrp_arm.urdf.xacro'" />
+
+  <!-- GUI Node for manually controlling joint angles (q1, q2, q3 sliders) -->
+  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+
+  <!-- Robot State Publisher to broadcast TF frames based on /joint_states from GUI -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <!-- RViz Visualization -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find autonomous_rrp_pick_place_pkg)/rviz/urdf.rviz" required="true" />
+
+  <!-- Forward Kinematics Solver Node -->
+  <node name="rrp_fk_solver" pkg="autonomous_rrp_pick_place_pkg" type="rrp_fk_solver.py" output="screen" />
+</launch>
