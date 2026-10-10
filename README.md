@@ -1,4 +1,5 @@
 # autonomous-rrp-pick-place
+## About the Project
  An end-to-end ROS Melodic autonomous manipulation pipeline integrating  a custom 3-DOF RRP manipulator (shown in the images below) along with the corresponding FK/IK solvers.
 
 ![Alt text](/project_artefacts/image-1.png)  ![Alt text](/project_artefacts/image.png)
